@@ -8,35 +8,35 @@ datasource db {
 }
 
 model books {
-  id          BigInt  @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   title       String  @db.VarChar(100)
   author      String  @db.VarChar(100)
   publisher   String  @db.VarChar(100)
   description String?
   isbn        String  @db.VarChar(50)
-  id_category BigInt
-  pages       BigInt
-  id_rating   BigInt
+  id_category Int
+  pages       Int
+  id_rating   Int
   cover       String  @db.VarChar(255)
 }
 
 model category {
-  id       BigInt @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   category String @db.VarChar(100)
   icon     String @db.VarChar(255)
 }
 
 model detail_user {
-  id          BigInt   @id @default(autoincrement())
-  user_id     BigInt
-  ktp         BigInt
+  id          Int      @id @default(autoincrement())
+  user_id     Int
+  ktp         Int
   address     String   @db.VarChar(255)
   dateofbirth DateTime @db.Date
-  age         BigInt
+  age         Int
 }
 
 model users {
-  id       BigInt @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   name     String @db.VarChar(100)
   username String @db.VarChar(100)
   email    String @db.VarChar(100)

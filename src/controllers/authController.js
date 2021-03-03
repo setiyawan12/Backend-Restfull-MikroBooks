@@ -15,6 +15,7 @@ module.exports={
             prisma.users.create({
                 data:newBody
             })
+            // console.log(newBody);
             .then(data =>{
                 res.send({
                     message:'success',
