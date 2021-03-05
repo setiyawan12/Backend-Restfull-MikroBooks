@@ -2,88 +2,88 @@ const {PrismaClient} = require ('@prisma/client')
 const prisma = new PrismaClient()
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const response = require('../helper/response')
 
 module.exports={
-    signUp: (req,res) =>{
-        const {body} = req;
+    signUp: (req, res) => {
+        const register = {
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+        };
         const saltRounds = 10;
-        bcrypt.hash(body.password,saltRounds,(err,hashPassword)=>{
-            const newBody = {
-                ...body,
-                password : hashPassword    
-            }
-            prisma.users.create({
-                data:newBody
+        bcrypt.hash(register.password, saltRounds, (err, hashPassword) => {
+          const newData = {
+            ...register,
+            password: hashPassword,
+          };
+          prisma.users
+            .create({
+              data: newData,
             })
-            // console.log(newBody);
-            .then(data =>{
-                res.send({
-                    message:'success',
-                    status:true,
-                    data:data
-                })
+            .then((data) => {
+              response.success(res,200,"Success Login",data)
             })
-            .catch(error=>{
+            .catch((err) => {
+              response.success(res,500,err)
+            });
+        });
+      },
+      signIn: (req, res) => {
+        const body = {
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+        };
+        prisma.users
+          .findFirst({
+            where: {
+              email: body.email,
+            },
+          })
+          .then((data) => {
+            if (!data) {
+              res.send({
+                message: "Error Login User Not Found",
+                status: 404,
+              });
+            } else {
+              console.log("passwordnya", data.password);
+              const isValid = bcrypt.compareSync(body.password, data.password);
+              if (!isValid) {
                 res.send({
-                    message:'gagal',
-                    status:500,
-                    error:error
-                })
-            }) 
-        })
-    },
-    signIn:(req,res)=>{
-        const {body} = req;
-        prisma.users.findFirst({
-            where:{
-                email:body.email
-            }
-        })
-        .then((data)=>{
-            if(!data){
+                  message: "Error Login ",
+                  status: 404,
+                  Error: "Password Is Wrong",
+                });
+              } else {
+                const payload = {
+                  username: data.username,
+                  email: data.email,
+                  password:data.passsword,
+                };
+    
+                const token = jwt.sign(payload, "PLUGIN007", {
+                  expiresIn: 86400,
+                });
+                const newData = {
+                  ...data,
+                  token: token,
+                };
                 res.send({
-                    msg:"Eroor Login,User Not Found",
-                    status:404
-                })
-            }else{
-                const isValid = bcrypt.compareSync(body.password, data.password);
-                console.log(isValid);
-                if (!isValid) {
-                    res.send({
-                        msg: 'Error For Login',
-                        status:403,
-                        error:'Password is wrong'
-                    })
-                }else{
-                    const payload = {
-                        name: data.name,
-                        username: data.username,
-                        email:data.email
-                    }
-
-                    const token = jwt.sign(payload,"Asem",{
-                        expiresIn:86400
-                    });
-                    delete data.password
-
-                    const newData ={
-                        ...data,
-                        token:token
-                    }
-                    res.send({
-                        msg:"Succes Login",
-                        status: 200,
-                        data:newData
-                    })
-                }
+                  message: "Success Login",
+                  status: 200,
+                  data: newData,
+                });
+              }
             }
-        })
-        .catch((error)=>{
+          })
+          .catch((error) => {
             res.send({
-                msh:"error login",
-                status:500,
-                error:error
-            })
-        })
-    }
+              message: "Login Error",
+              status: 404,
+              error: error,
+            });
+          });
+      },
 }

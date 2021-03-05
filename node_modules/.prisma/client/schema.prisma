@@ -8,37 +8,62 @@ datasource db {
 }
 
 model books {
-  id          Int     @id @default(autoincrement())
-  title       String  @db.VarChar(100)
-  author      String  @db.VarChar(100)
-  publisher   String  @db.VarChar(100)
+  id_books    Int       @id @default(autoincrement())
+  title       String?
+  publisher   String?
+  author      String?
+  isbn        Int?
+  pages       Int?
   description String?
-  isbn        String  @db.VarChar(50)
-  id_category Int
-  pages       Int
-  id_rating   Int
-  cover       String  @db.VarChar(255)
+  cover_books String?
+  discuss_id  Int?
+  users_id    Int?
+  rating_id   Int?
+  category_id Int?
+  user        Int?
+  category    category? @relation(fields: [category_id], references: [id_category])
+  users       users?    @relation(fields: [users_id], references: [id_users])
+}
+
+model borrow {
+  id_borrow  Int       @id @default(autoincrement())
+  date_start DateTime? @db.Date
+  date_end   DateTime? @db.Date
+  id_books   Int?
+  id_users   Int?
 }
 
 model category {
-  id       Int    @id @default(autoincrement())
-  category String @db.VarChar(100)
-  icon     String @db.VarChar(255)
+  id_category    Int     @id @default(autoincrement())
+  category_name  String?
+  category_cover String?
+  books          books[]
 }
 
-model detail_user {
-  id          Int      @id @default(autoincrement())
-  user_id     Int
-  ktp         Int
-  address     String   @db.VarChar(255)
-  dateofbirth DateTime @db.Date
-  age         Int
+model discuss {
+  id_discuss BigInt  @id @default(autoincrement())
+  diskusi    String?
+  id_books   Int?
 }
 
 model users {
-  id       Int    @id @default(autoincrement())
-  name     String @db.VarChar(100)
-  username String @db.VarChar(100)
-  email    String @db.VarChar(100)
-  password String
+  id_users           Int       @id @default(autoincrement())
+  name_users         String?
+  username           String?
+  email              String?
+  password           String?
+  nik                BigInt?
+  users_foto         String?
+  address            String?   @db.Char(1)
+  tlp                BigInt?
+  gender             String?
+  birth_date         DateTime? @db.Date
+  books              String[]
+  books_booksTousers books[]
+}
+
+model rating {
+  id_rating Int  @id @default(autoincrement())
+  rating    Int?
+  id_books  Int?
 }
