@@ -11,22 +11,38 @@ module.exports={
           email: req.body.email,
           password: req.body.password,
         };
+        console.log("ini reqister",register);
         const saltRounds = 10;
         bcrypt.hash(register.password, saltRounds, (err, hashPassword) => {
           const newData = {
             ...register,
             password: hashPassword,
           };
+          console.log("ini Pssw",hashPassword);
           prisma.users
             .create({
               data: newData,
             })
-            .then((data) => {
-              response.success(res,200,"Success Login",data)
+            // .then((data) => {
+            //   response.success(res,200,"Success Login",data)
+            // })
+            // .catch((err) => {
+            //   response.success(res,500,err)
+            // });
+            .then((data)=>{
+              res.send({
+                msg:'Succes',
+                status:200,
+                data
+              })
             })
-            .catch((err) => {
-              response.success(res,500,err)
-            });
+            .catch((error)=>{
+              res.send({
+                msg:'failed',
+                status:500,
+                error
+              })
+            })
         });
       },
       signIn: (req, res) => {
@@ -61,7 +77,10 @@ module.exports={
                   username: data.username,
                   email: data.email,
                   password:data.passsword,
+                  users_id:data.id_users
+
                 };
+                console.log("payload", payload);
     
                 const token = jwt.sign(payload, "PLUGIN007", {
                   expiresIn: 86400,

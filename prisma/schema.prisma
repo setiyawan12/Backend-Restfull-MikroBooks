@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["groupBy"]
 }
 
 datasource db {
@@ -23,6 +24,7 @@ model books {
   user        Int?
   category    category? @relation(fields: [category_id], references: [id_category])
   users       users?    @relation(fields: [users_id], references: [id_users])
+  rating      rating[]
 }
 
 model borrow {
@@ -47,23 +49,30 @@ model discuss {
 }
 
 model users {
-  id_users           Int       @id @default(autoincrement())
+  id_users           Int            @id @default(autoincrement())
   name_users         String?
   username           String?
   email              String?
   password           String?
-  nik                BigInt?
-  users_foto         String?
-  address            String?   @db.Char(1)
-  tlp                BigInt?
-  gender             String?
-  birth_date         DateTime? @db.Date
   books              String[]
   books_booksTousers books[]
+  detail_users       detail_users[]
 }
 
 model rating {
-  id_rating Int  @id @default(autoincrement())
-  rating    Int?
+  id_rating Int    @id @default(autoincrement())
   id_books  Int?
+  books     books? @relation(fields: [id_books], references: [id_books])
+}
+
+model detail_users {
+  id         Int       @id @default(autoincrement())
+  users_id   Int?
+  nik        Int?
+  users_foto String?
+  address    String?
+  tlp        Int?
+  gender     String?
+  birth_date DateTime? @db.Date
+  users      users?    @relation(fields: [users_id], references: [id_users])
 }
