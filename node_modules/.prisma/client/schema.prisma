@@ -6,7 +6,6 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model books {
@@ -18,14 +17,14 @@ model books {
   pages       Int?
   description String?
   cover_books String?
-  discuss_id  Int?
   users_id    Int?
-  rating_id   Int?
   category_id Int?
   user        Int?
   category    category? @relation(fields: [category_id], references: [id_category])
   users       users?    @relation(fields: [users_id], references: [id_users])
   rating      rating[]
+  discuss     discuss[]
+  borrow      borrow[]
 }
 
 model borrow {
@@ -34,6 +33,8 @@ model borrow {
   date_end   DateTime? @db.Date
   id_books   Int?
   id_users   Int?
+  books      books?    @relation(fields: [id_books], references: [id_books])
+  users      users?     @relation(fields: [id_users], references: [id_users])
 }
 
 model category {
@@ -46,26 +47,30 @@ model category {
 model discuss {
   id_discuss BigInt  @id @default(autoincrement())
   diskusi    String?
-  id_books   Int?
+  books_id   Int?
+  id_users    Int?
+  books books? @relation(fields:[books_id],references:[id_books])
+  users users? @relation(fields: [id_users],references:[id_users])
 }
 
 model users {
   id_users           Int            @id @default(autoincrement())
-  name_users         String?
   username           String?
   email              String?
   password           String?
   books              String[]
   books_booksTousers books[]
   detail_users       detail_users[]
+  disscus            discuss[]
+  borrow             borrow[]
 }
 
 model rating {
   id_rating Int    @id @default(autoincrement())
   id_books  Int?
+  rating    Float?
   books     books? @relation(fields: [id_books], references: [id_books])
 }
-
 model detail_users {
   id         Int       @id @default(autoincrement())
   users_id   Int?

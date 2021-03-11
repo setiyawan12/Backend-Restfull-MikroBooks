@@ -18,7 +18,7 @@ module.exports={
             ...register,
             password: hashPassword,
           };
-          console.log("ini Pssw",hashPassword);
+          console.log("pass",hashPassword);
           prisma.users
             .create({
               data: newData,

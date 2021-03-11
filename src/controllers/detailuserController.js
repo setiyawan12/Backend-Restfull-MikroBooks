@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 const response = require('../helper/response')
 
 module.exports = {
-  viewProfile: (req, res) => {
+  viewProfileDetail: (req, res) => {
     prisma.
     detail_users
       .findMany({
@@ -18,22 +18,16 @@ module.exports = {
         response.error(res, 500, error)
       })
   },
-  createDetaiUser: (req, res) => {
+  createDetailUser: (req, res) => {
+    let deCoded_id_users = req.decodedToken.users_id;
     const { body } = req;
     const newBody = {
       ...body,
       nik: parseInt(body.nik),
       tlp: parseInt(body.tlp),
       birth_date: new Date(body.birth_date),
-      users_id: parseInt(body.users_id)
+      users_id: deCoded_id_users
     };
-    // prisma.detail_users
-    //   .update({
-    //     where: {
-    //       users_id: parseInt(id),
-    //     },
-    //     data: newBody,
-    //   })
     prisma.detail_users.create({
       data: newBody
     })
@@ -43,5 +37,15 @@ module.exports = {
       .catch((error) => {
         response.error(res, 500, error)
       });
-  }
+  },
+  viewUser: (req, res) => {
+    prisma.users
+      .findMany()
+      .then((data) => {
+        response.success(res, "Succes Get Profile", 200, data)
+      })
+      .catch((error) => {
+        response.error(res, 500, error)
+      })
+  },
 }

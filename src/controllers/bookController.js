@@ -1,7 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const response = require('../helper/response')
-const jwt = require("jsonwebtoken")
 
 module.exports = {
   getBooks: (req, res) => {
@@ -26,33 +25,35 @@ module.exports = {
         response.error(res, 500, error)
       })
   },
-  createbooks: (req, res) => {
-    const { body } = req;
-    const newBody = {
+  createbooksUsers: (req,res)=>{
+    let deCoded_id_users = req.decodedToken.users_id;
+    const {body} = req
+    const newBody={
       ...body,
+      users_id: deCoded_id_users,
       isbn: parseInt(body.isbn),
       pages: parseInt(body.pages),
       category_id: parseInt(body.category_id),
-      users_id: parseInt(body.users_id),
-      discuss_id: parseInt(body.discuss_id),
-      rating_id: parseInt(body.rating_id),
+      cover_books:req.file.path
     };
     prisma.books
-      .create({
-        data: newBody
-      })
-      .then((data) => {
-        response.success(res, "Success Menambahkan Buku", 200, data)
-      })
-      .catch((error) => {
-        response.error(res, 500, error)
-      })
+    .create({
+      data: newBody,
+    })
+    .then((data) => {
+      res.send({
+        message: "Data Books Success Upload",
+        status: 200,
+        data: data,
+      });
+    })
+    .catch((err) => {
+      res.send({ message: "Error While Add data", status: 500, error: err });
+    });
   },
   deleteBooks: (req, res) => {
     const { id } = req.params;
-    const token = req.header("x-access-token").split(" ")[1];
-    const deCoded = jwt.verify(token, "PLUGIN007");
-    let deCoded_id_users = deCoded.users_id;
+    let deCoded_id_users = req.deCoded.users_id;
     prisma.books
       .deleteMany({
         where: {
@@ -68,22 +69,20 @@ module.exports = {
       });
   },
   updateBooks: (req, res) => {
+    let deCoded_id_users = req.decodedToken.users_id;
     const { id } = req.params;
     const { body } = req;
-
     const newBody = {
       ...body,
       isbn: parseInt(body.isbn),
       pages: parseInt(body.pages),
       category_id: parseInt(body.category_id),
-      users_id: parseInt(body.users_id),
-      discuss_id: parseInt(body.discuss_id),
-      rating_id: parseInt(body.rating_id),
     };
     prisma.books
-      .update({
+      .updateMany({
         where: {
           id_books: parseInt(id),
+          users_id:deCoded_id_users
         },
         data: newBody,
       })
@@ -110,9 +109,7 @@ module.exports = {
       });
   },
   getBooksByUser: (req, res) => {
-    const token = req.header("x-access-token").split(" ")[1];
-    const deCoded = jwt.verify(token, "PLUGIN007");
-    let deCoded_id_users = deCoded.users_id;
+    let deCoded_id_users = req.decodedToken.users_id;
     console.log("id user", deCoded_id_users);
     prisma.books
       .findMany({
