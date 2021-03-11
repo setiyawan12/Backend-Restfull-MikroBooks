@@ -9,7 +9,7 @@ module.exports = {
       start_date: new Date(body.start_date),
       end_date: new Date(body.end_date),
       id_books: parseInt(body.id_books),
-      id_user: parseInt(body.id_user),
+      id_users: parseInt(body.id_users),
     };
     prisma.borrow
       .create({
@@ -36,16 +36,16 @@ module.exports = {
         include: {
           books: {
             include: {
-              user: {
+              users: {
                 select: {
-                  name_user: true,
+                  name_users: true,
                 },
               },
             },
           },
-          user: {
+          users: {
             select: {
-              name_user: true,
+              name_users: true,
             },
           },
         },

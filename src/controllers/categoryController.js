@@ -28,12 +28,14 @@ module.exports={
       },
       createCategory:(req,res)=>{
           const {body} = req
-          const newBody = body
+          const newBody = {
+            ...body,
+            category_cover:req.file.path
+          }
 
           prisma.category.create({
               data:newBody
           })
-        //   console.log(newBody);
         .then((data)=>{
             response.success(res,"Succes Menambah Category",200,data)
         })
