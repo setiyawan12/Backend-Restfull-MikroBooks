@@ -45,10 +45,10 @@ model category {
 }
 
 model discuss {
-  id_discuss BigInt  @id @default(autoincrement())
+  id_discuss Int  @id @default(autoincrement())
   diskusi    String?
   books_id   Int?
-  id_users    Int?
+  id_users   Int?
   books books? @relation(fields:[books_id],references:[id_books])
   users users? @relation(fields: [id_users],references:[id_users])
 }
@@ -69,6 +69,7 @@ model rating {
   id_rating Int    @id @default(autoincrement())
   id_books  Int?
   rating    Float?
+  id_users  Int?
   books     books? @relation(fields: [id_books], references: [id_books])
 }
 model detail_users {
