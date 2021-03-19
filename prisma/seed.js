@@ -34,20 +34,85 @@ const dataUsers = [
         password: bcrypt.hashSync("12345678", 10),
       }
 ];
-const detailUsers = {
-    users_id:1,
-    address:'tegal',
-    gender:'laki-laki',
-    birth_date: new Date(03/04/2020),
-    tlp:0874665776,
-    nik:92992993,
-    users_foto:"public/user_image/1615479773454-users_foto.png"
-}
+const detailUsers = [
+    {
+        users_id:1,
+        address:'tegal',
+        gender:'laki-laki',
+        birth_date: new Date(03/04/2020),
+        tlp:0874665776,
+        nik:92992993,
+        users_foto:"public/user_image/1615479773454-users_foto.png"
+    },
+    {
+        users_id:2,
+        address:'tegal',
+        gender:'laki-laki',
+        birth_date: new Date(03/04/2020),
+        tlp:0874665776,
+        nik:92992993,
+        users_foto:"public/user_image/1615479773454-users_foto.png"
+    },
+    {
+        users_id:3,
+        address:'tegal',
+        gender:'laki-laki',
+        birth_date: new Date(03/04/2020),
+        tlp:0874665776,
+        nik:92992993,
+        users_foto:"public/user_image/1615479773454-users_foto.png"
+    },
+    {
+        users_id:4,
+        address:'tegal',
+        gender:'laki-laki',
+        birth_date: new Date(03/04/2020),
+        tlp:0874665776,
+        nik:92992993,
+        users_foto:"public/user_image/1615479773454-users_foto.png"
+    },
+    {
+        users_id:5,
+        address:'tegal',
+        gender:'laki-laki',
+        birth_date: new Date(03/04/2020),
+        tlp:0874665776,
+        nik:92992993,
+        users_foto:"public/user_image/1615479773454-users_foto.png"
+    },
+    {
+        users_id:6,
+        address:'tegal',
+        gender:'laki-laki',
+        birth_date: new Date(03/04/2020),
+        tlp:0874665776,
+        nik:92992993,
+        users_foto:"public/user_image/1615479773454-users_foto.png"
+    },
+];
 
-const dataCategories = {
-  category_name: "Category 1",
-  category_cover: "public/category_image/1616178256329-category_cover.png",
-};
+const dataCategories = [
+    {
+        category_name: "Novel",
+        category_cover: "public/category_image/1616178256329-category_cover.png",
+      },
+      {
+        category_name: "Cergam",
+        category_cover: "public/category_image/1616178256329-category_cover.png",
+      },
+      {
+        category_name: "Komik",
+        category_cover: "public/category_image/1616178256329-category_cover.png",
+      },
+      {
+        category_name: "Ensiklopedi",
+        category_cover: "public/category_image/1616178256329-category_cover.png",
+      },
+      {
+        category_name: "Antologi",
+        category_cover: "public/category_image/1616178256329-category_cover.png",
+      }
+];
 
 const dataBooks = [
   {
@@ -72,15 +137,48 @@ const dataBooks = [
     users_id: 1,
     category_id: 1,
   },
+  {
+    title: "Book 3",
+    publisher: "Gramedia3",
+    author: "Mbuh Sapa3",
+    isbn: 1234567,
+    pages: 200,
+    description: "Test Seeding Book Table3",
+    cover_books: "public/book_image/1615294764016-cover_books.png",
+    users_id: 2,
+    category_id: 2,
+  },
+  {
+    title: "Book 4",
+    publisher: "Gramedia4",
+    author: "Mbuh Sapa4",
+    isbn: 1234567,
+    pages: 200,
+    description: "Test Seeding Book Table4",
+    cover_books: "public/book_image/1615294764016-cover_books.png",
+    users_id: 3,
+    category_id: 4,
+  },
+  {
+    title: "Book 5",
+    publisher: "Gramedia5",
+    author: "Mbuh Sapa5",
+    isbn: 1234567,
+    pages: 200,
+    description: "Test Seeding Book Table5",
+    cover_books: "public/book_image/1615294764016-cover_books.png",
+    users_id: 3,
+    category_id: 1,
+  },
 ];
 const main = async () => {
   const users = await prisma.users.createMany({
     data: dataUsers,
   });
-  const detailUser = await prisma.detail_users.create({
+  const detailUser = await prisma.detail_users.createMany({
       data:detailUsers,
   })
-  const categories = await prisma.category.create({
+  const categories = await prisma.category.createMany({
     data: dataCategories,
   });
   const books = await prisma.books.createMany({

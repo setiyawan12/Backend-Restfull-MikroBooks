@@ -15,6 +15,16 @@ module.exports = {
           select:{
             username:true,
           }
+        },
+        borrow:{
+          select:{
+            id_borrow:true
+          }
+        },
+        discuss:{
+          select:{
+            diskusi:true
+          }
         }
       }
     })
