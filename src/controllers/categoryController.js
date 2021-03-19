@@ -4,7 +4,6 @@ const response = require('../helper/response')
 module.exports={
     getCategory :(req,res)=>{
       prisma.category.findMany()
-      const response = require('../helper/response')
         .then((data) =>{
             response.success(res,"Succes Get All Category",200,data)
         })

@@ -8,9 +8,7 @@ CREATE TABLE "books" (
     "pages" INTEGER,
     "description" TEXT,
     "cover_books" TEXT,
-    "discuss_id" INTEGER,
     "users_id" INTEGER,
-    "rating_id" INTEGER,
     "category_id" INTEGER,
     "user" INTEGER,
 
@@ -39,9 +37,10 @@ CREATE TABLE "category" (
 
 -- CreateTable
 CREATE TABLE "discuss" (
-    "id_discuss" BIGSERIAL NOT NULL,
+    "id_discuss" SERIAL NOT NULL,
     "diskusi" TEXT,
-    "id_books" INTEGER,
+    "books_id" INTEGER,
+    "id_users" INTEGER,
 
     PRIMARY KEY ("id_discuss")
 );
@@ -49,7 +48,6 @@ CREATE TABLE "discuss" (
 -- CreateTable
 CREATE TABLE "users" (
     "id_users" SERIAL NOT NULL,
-    "name_users" TEXT,
     "username" TEXT,
     "email" TEXT,
     "password" TEXT,
@@ -62,6 +60,8 @@ CREATE TABLE "users" (
 CREATE TABLE "rating" (
     "id_rating" SERIAL NOT NULL,
     "id_books" INTEGER,
+    "rating" DOUBLE PRECISION,
+    "id_users" INTEGER,
 
     PRIMARY KEY ("id_rating")
 );
@@ -85,6 +85,18 @@ ALTER TABLE "books" ADD FOREIGN KEY ("category_id") REFERENCES "category"("id_ca
 
 -- AddForeignKey
 ALTER TABLE "books" ADD FOREIGN KEY ("users_id") REFERENCES "users"("id_users") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "borrow" ADD FOREIGN KEY ("id_books") REFERENCES "books"("id_books") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "borrow" ADD FOREIGN KEY ("id_users") REFERENCES "users"("id_users") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "discuss" ADD FOREIGN KEY ("books_id") REFERENCES "books"("id_books") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "discuss" ADD FOREIGN KEY ("id_users") REFERENCES "users"("id_users") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "rating" ADD FOREIGN KEY ("id_books") REFERENCES "books"("id_books") ON DELETE SET NULL ON UPDATE CASCADE;

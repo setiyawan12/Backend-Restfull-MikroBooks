@@ -32,6 +32,7 @@ module.exports = {
       });
   },
   getBorrow: (req, res) => {
+    
     prisma.borrow
       .findMany({
         include: {
