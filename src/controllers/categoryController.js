@@ -1,5 +1,6 @@
 const {PrismaClient} = require ('@prisma/client')
 const prisma = new PrismaClient()
+const response = require('../helper/response')
 module.exports={
     getCategory :(req,res)=>{
       prisma.category.findMany()
@@ -32,7 +33,7 @@ module.exports={
             ...body,
             category_cover:req.file.path
           }
-
+          console.log(newBody);
           prisma.category.create({
               data:newBody
           })
