@@ -87,6 +87,7 @@ module.exports={
                 });
                 const newData = {
                   ...data,
+                  password:undefined,
                   token: token,
                 };
                 res.send({

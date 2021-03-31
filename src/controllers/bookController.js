@@ -63,7 +63,7 @@ module.exports = {
   },
   deleteBooks: (req, res) => {
     const { id } = req.params;
-    let deCoded_id_users = req.deCoded.users_id;
+    let deCoded_id_users = req.decodedToken.users_id;
     prisma.books
       .deleteMany({
         where: {
@@ -112,7 +112,11 @@ module.exports = {
         },
       })
       .then((data) => {
-        response.success(res, "Success Get Data Books By Id", 200, data)
+        res.send({
+          message: "Sucess",
+          status: 200,
+          data: data,
+        });
       })
       .catch((error) => {
         response.error(res, 500, error)
