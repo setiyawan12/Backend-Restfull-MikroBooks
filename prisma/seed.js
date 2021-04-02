@@ -116,9 +116,9 @@ const dataCategories = [
 
 const dataBooks = [
   {
-    title: "Book 1",
+    title: "The Most Powerful Idea in the World",
     publisher: "Gramedia",
-    author: "Mbuh Sapa",
+    author: "Vaclav Smil",
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table",
@@ -127,9 +127,9 @@ const dataBooks = [
     category_id: 1,
   },
   {
-    title: "Book 2",
+    title: "Behind The Beautiful Forevers",
     publisher: "Gramedia2",
-    author: "Mbuh Sapa2",
+    author: "Bill gates",
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table2",
@@ -138,9 +138,9 @@ const dataBooks = [
     category_id: 1,
   },
   {
-    title: "Book 3",
+    title: "Sould We Eat Meat",
     publisher: "Gramedia3",
-    author: "Mbuh Sapa3",
+    author: "We Eas Randy",
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table3",
@@ -149,9 +149,9 @@ const dataBooks = [
     category_id: 2,
   },
   {
-    title: "Book 4",
+    title: "The Emperor of Maladies",
     publisher: "Gramedia4",
-    author: "Mbuh Sapa4",
+    author: "Vaclak Smiill",
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table4",
@@ -160,7 +160,7 @@ const dataBooks = [
     category_id: 4,
   },
   {
-    title: "Book 5",
+    title: "Enligtenment Now ",
     publisher: "Gramedia5",
     author: "Mbuh Sapa5",
     isbn: 1234567,
