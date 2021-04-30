@@ -10,4 +10,5 @@ bookRoutes.post('/',authMiddleware.checkLogin,uploadMidleware,couldinary,bookCon
 bookRoutes.delete('/:id',authMiddleware.checkLogin,bookConttroler.deleteBooks)
 bookRoutes.put('/:id',authMiddleware.checkLogin,uploadMidleware,bookConttroler.updateBooks)
 bookRoutes.get('/:id',authMiddleware.checkLogin,bookConttroler.getBookById)
+
 module.exports = bookRoutes

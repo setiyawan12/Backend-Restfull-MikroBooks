@@ -18,8 +18,8 @@ const CloudinaryBooks = (req, res,next) => {
     pathFile,
     {
       resource_type: "raw",
-      public_id: `express-cloudinary/${uniqueFileName}`,
-      tags: `express-cloudinary`,
+      public_id: `books/${uniqueFileName}`,
+      tags: `books`,
     },
     (err, image) => {
       if (err) return res.send(err);
