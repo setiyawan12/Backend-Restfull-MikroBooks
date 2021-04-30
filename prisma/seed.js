@@ -42,7 +42,7 @@ const detailUsers = [
         birth_date: new Date(03/04/2020),
         tlp:0874665776,
         nik:92992993,
-        users_foto:"public/user_image/1615479773454-users_foto.png"
+        users_foto:"https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg"
     },
     {
         users_id:2,
@@ -51,7 +51,7 @@ const detailUsers = [
         birth_date: new Date(03/04/2020),
         tlp:0874665776,
         nik:92992993,
-        users_foto:"public/user_image/1615479773454-users_foto.png"
+        users_foto:"https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg"
     },
     {
         users_id:3,
@@ -60,7 +60,7 @@ const detailUsers = [
         birth_date: new Date(03/04/2020),
         tlp:0874665776,
         nik:92992993,
-        users_foto:"public/user_image/1615479773454-users_foto.png"
+        users_foto:"https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg"
     },
     {
         users_id:4,
@@ -69,7 +69,7 @@ const detailUsers = [
         birth_date: new Date(03/04/2020),
         tlp:0874665776,
         nik:92992993,
-        users_foto:"public/user_image/1615479773454-users_foto.png"
+        users_foto:"https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg"
     },
     {
         users_id:5,
@@ -78,7 +78,7 @@ const detailUsers = [
         birth_date: new Date(03/04/2020),
         tlp:0874665776,
         nik:92992993,
-        users_foto:"public/user_image/1615479773454-users_foto.png"
+        users_foto:"https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg"
     },
     {
         users_id:6,
@@ -87,30 +87,30 @@ const detailUsers = [
         birth_date: new Date(03/04/2020),
         tlp:0874665776,
         nik:92992993,
-        users_foto:"public/user_image/1615479773454-users_foto.png"
+        users_foto:"https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg"
     },
 ];
 
 const dataCategories = [
     {
         category_name: "Novel",
-        category_cover: "public/category_image/1616178256329-category_cover.png",
+        category_cover: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
       },
       {
         category_name: "Cergam",
-        category_cover: "public/category_image/1616178256329-category_cover.png",
+        category_cover: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
       },
       {
         category_name: "Komik",
-        category_cover: "public/category_image/1616178256329-category_cover.png",
+        category_cover: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
       },
       {
         category_name: "Ensiklopedi",
-        category_cover: "public/category_image/1616178256329-category_cover.png",
+        category_cover: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
       },
       {
         category_name: "Antologi",
-        category_cover: "public/category_image/1616178256329-category_cover.png",
+        category_cover: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
       }
 ];
 
@@ -122,7 +122,7 @@ const dataBooks = [
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table",
-    cover_books: "public/book_image/1615294764016-cover_books.png",
+    cover_books: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
     users_id: 1,
     category_id: 1,
   },
@@ -133,7 +133,7 @@ const dataBooks = [
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table2",
-    cover_books: "public/book_image/1615294764016-cover_books.png",
+    cover_books: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
     users_id: 1,
     category_id: 1,
   },
@@ -144,7 +144,7 @@ const dataBooks = [
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table3",
-    cover_books: "public/book_image/1615294764016-cover_books.png",
+    cover_books: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
     users_id: 2,
     category_id: 2,
   },
@@ -155,7 +155,7 @@ const dataBooks = [
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table4",
-    cover_books: "public/book_image/1615294764016-cover_books.png",
+    cover_books: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
     users_id: 3,
     category_id: 4,
   },
@@ -166,7 +166,7 @@ const dataBooks = [
     isbn: 1234567,
     pages: 200,
     description: "Test Seeding Book Table5",
-    cover_books: "public/book_image/1615294764016-cover_books.png",
+    cover_books: "https://res.cloudinary.com/setiyawan/image/upload/v1613766110/sample.jpg",
     users_id: 3,
     category_id: 1,
   },
