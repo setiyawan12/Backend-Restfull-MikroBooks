@@ -44,7 +44,7 @@ module.exports = {
       isbn: parseInt(body.isbn),
       pages: parseInt(body.pages),
       category_id: parseInt(body.category_id),
-      cover_books:req.file.path
+      cover_books: req.image.url
     };
     prisma.books
     .create({

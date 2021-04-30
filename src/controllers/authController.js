@@ -2,7 +2,6 @@ const {PrismaClient} = require ('@prisma/client')
 const prisma = new PrismaClient()
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const response = require('../helper/response')
 
 module.exports={
     signUp: (req, res) => {
@@ -23,12 +22,6 @@ module.exports={
             .create({
               data: newData,
             })
-            // .then((data) => {
-            //   response.success(res,200,"Success Login",data)
-            // })
-            // .catch((err) => {
-            //   response.success(res,500,err)
-            // });
             .then((data)=>{
               res.send({
                 msg:'Succes',

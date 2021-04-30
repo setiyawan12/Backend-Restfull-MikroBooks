@@ -12,6 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use('/', mainRouter)
 
-app.listen(process.env.PORT || 3001, () => {
+app.listen(process.env.PORT || 3002, () => {
     console.log('Server is Runing Port 3000');
 })

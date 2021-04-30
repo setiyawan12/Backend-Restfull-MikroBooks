@@ -22,9 +22,9 @@ model books {
   user        Int?
   category    category? @relation(fields: [category_id], references: [id_category])
   users       users?    @relation(fields: [users_id], references: [id_users])
-  rating      rating[]
-  discuss     discuss[]
   borrow      borrow[]
+  discuss     discuss[]
+  rating      rating[]
 }
 
 model borrow {
@@ -34,7 +34,7 @@ model borrow {
   id_books   Int?
   id_users   Int?
   books      books?    @relation(fields: [id_books], references: [id_books])
-  users      users?     @relation(fields: [id_users], references: [id_users])
+  users      users?    @relation(fields: [id_users], references: [id_users])
 }
 
 model category {
@@ -45,12 +45,12 @@ model category {
 }
 
 model discuss {
-  id_discuss Int  @id @default(autoincrement())
+  id_discuss Int     @id @default(autoincrement())
   diskusi    String?
   books_id   Int?
   id_users   Int?
-  books books? @relation(fields:[books_id],references:[id_books])
-  users users? @relation(fields: [id_users],references:[id_users])
+  books      books?  @relation(fields: [books_id], references: [id_books])
+  users      users?  @relation(fields: [id_users], references: [id_users])
 }
 
 model users {
@@ -60,9 +60,9 @@ model users {
   password           String?
   books              String[]
   books_booksTousers books[]
+  borrow             borrow[]
   detail_users       detail_users[]
   disscus            discuss[]
-  borrow             borrow[]
 }
 
 model rating {
@@ -72,6 +72,7 @@ model rating {
   id_users  Int?
   books     books? @relation(fields: [id_books], references: [id_books])
 }
+
 model detail_users {
   id         Int       @id @default(autoincrement())
   users_id   Int?

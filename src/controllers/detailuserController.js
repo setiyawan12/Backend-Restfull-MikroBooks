@@ -26,7 +26,7 @@ module.exports = {
       nik: parseInt(body.nik),
       tlp: parseInt(body.tlp),
       birth_date: new Date(body.birth_date),
-      users_foto:req.file.path,
+      users_foto:req.image.url,
       users_id: deCoded_id_users
     };
     prisma.detail_users.create({

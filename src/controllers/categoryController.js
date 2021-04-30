@@ -30,7 +30,7 @@ module.exports={
           const {body} = req
           const newBody = {
             ...body,
-            category_cover:req.file.path
+            category_cover:req.image.url
           }
           console.log(newBody);
           prisma.category.create({
